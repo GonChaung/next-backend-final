@@ -71,7 +71,7 @@ export async function POST(req) {
       );
     }
 
-    // Determine borrow status based on book availability
+    // Determine borrow requestStatus based on book availability
     let borrowStatus;
     if (book.quantity > 0) {
       borrowStatus = "ACCEPTED";
@@ -92,7 +92,7 @@ export async function POST(req) {
       bookTitle: book.title,
       createdAt: new Date(),
       targetDate: new Date(targetDate),
-      status: borrowStatus,
+      requestStatus: borrowStatus,
     };
 
     const result = await db.collection("borrows").insertOne(borrowRequest);
